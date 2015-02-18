@@ -22,7 +22,7 @@ MRuby::Build.new('fgkenvm') do |conf|
   conf.gem 'mrbgems/mruby-bin-fgkenvm'
 
   # include the default GEMs
-  conf.gembox 'fgkenvm'
+  #conf.gembox 'fgkenvm'
   
   conf.cc do |cc|
 	cc.flags = %w(-nostdinc -nostdlib -fno-builtin -static)
@@ -32,16 +32,17 @@ MRuby::Build.new('fgkenvm') do |conf|
   end
 
   conf.linker do |linker|
-	linker.flags = %w(-nostdinc -nostdlib -static)
+	linker.flags = %w(-nostdinc -nostdlib -fno-builtin -static)
     linker.libraries = %w(c)
     linker.library_paths << "#{root}/blibc/lib"
+	p linker.library_paths
   end
 
   enable_debug
   
-#  conf.bins = []
-
-#  conf.build_mrbtest_lib_only
+  conf.bins = []
+  conf.build_mrbtest_lib_only
+  conf.disable_cxx_exception
 
   # Use mrbgems
   # conf.gem 'examples/mrbgems/ruby_extension_example'
