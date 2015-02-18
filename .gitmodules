@@ -1,0 +1,3 @@
+[submodule "blibc"]
+	path = blibc
+	url = https://github.com/fgken/blibc.git

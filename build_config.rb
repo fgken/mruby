@@ -25,12 +25,16 @@ MRuby::Build.new('fgkenvm') do |conf|
   conf.gembox 'fgkenvm'
   
   conf.cc do |cc|
-	cc.flags = %w(-nostdinc -nostdlib)
-	cc.defines = %w(DISABLE_STDIO)
+	cc.flags = %w(-nostdinc -nostdlib -fno-builtin -static)
+	cc.flags << %w(-g -Wall -Werror-implicit-function-declaration -Wdeclaration-after-statement)
+    cc.include_paths << "#{root}/blibc/include"
+	#cc.defines = %w(DISABLE_STDIO)
   end
 
   conf.linker do |linker|
-	linker.flags = %w(-nostdinc -nostdlib)
+	linker.flags = %w(-nostdinc -nostdlib -static)
+    linker.libraries = %w(c)
+    linker.library_paths << "#{root}/blibc/lib"
   end
 
   enable_debug
