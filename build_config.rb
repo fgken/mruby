@@ -20,6 +20,7 @@ MRuby::Build.new('fgkenvm') do |conf|
   toolchain :gcc
 
   conf.gem 'mrbgems/mruby-bin-fgkenvm'
+  conf.gem 'mrbgems/mruby-print'
 
   # include the default GEMs
   #conf.gembox 'fgkenvm'
